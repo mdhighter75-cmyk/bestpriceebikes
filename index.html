@@ -1,854 +1,230 @@
+Here's the complete file — copy everything from `<!DOCTYPE html>` to `</html>`:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Best Price Ebikes – Electric Bikes Delivered to Your Door</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://js.stripe.com/v3/"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --yellow: #FFE000;
-    --black: #0A0A0A;
-    --white: #FFFFFF;
-    --gray: #F5F5F5;
-    --mid: #888;
-    --green: #00C853;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    background: var(--black);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: var(--yellow);
-    letter-spacing: 1px;
-  }
+  :root { --yellow: #FFE000; --black: #0A0A0A; --white: #FFFFFF; --gray: #F5F5F5; --mid: #888; --green: #00C853; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+  nav { background: var(--black); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--yellow); letter-spacing: 1px; }
   .logo span { color: var(--white); }
-  nav a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    opacity: 0.8;
-    margin-left: 24px;
-  }
+  nav a { color: var(--white); text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.8; margin-left: 24px; }
   nav a:hover { opacity: 1; color: var(--yellow); }
-
-  /* HERO */
-  .hero {
-    background: var(--black);
-    color: var(--white);
-    padding: 80px 24px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,224,0,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: var(--yellow);
-    color: var(--black);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 900;
-    line-height: 1;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .hero h1 em {
-    color: var(--yellow);
-    font-style: normal;
-  }
-  .hero p {
-    font-size: 1.1rem;
-    opacity: 0.7;
-    max-width: 480px;
-    margin: 0 auto 36px;
-    line-height: 1.6;
-  }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin-bottom: 40px;
-  }
+  .hero { background: var(--black); color: var(--white); padding: 80px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,224,0,0.15) 0%, transparent 70%); pointer-events: none; }
+  .hero-badge { display: inline-block; background: var(--yellow); color: var(--black); font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 em { color: var(--yellow); font-style: normal; }
+  .hero p { font-size: 1.1rem; opacity: 0.7; max-width: 480px; margin: 0 auto 36px; line-height: 1.6; }
+  .hero-stats { display: flex; justify-content: center; gap: 48px; margin-bottom: 40px; }
   .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: var(--yellow);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    opacity: 0.6;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 4px;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: var(--yellow);
-    color: var(--black);
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 16px 40px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: transform 0.15s, box-shadow 0.15s;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-  }
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255,224,0,0.4);
-  }
-
-  /* SECTION TITLES */
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-  .section-sub {
-    text-align: center;
-    color: var(--mid);
-    margin-bottom: 48px;
-    font-size: 1rem;
-  }
-
-  /* BIKES SECTION */
-  .bikes-section {
-    padding: 80px 24px;
-    background: var(--white);
-  }
-  .bikes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 32px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .bike-card {
-    border: 2px solid #E8E8E8;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: var(--white);
-  }
-  .bike-card:hover {
-    border-color: var(--yellow);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-  }
-  .bike-img-wrap {
-    background: var(--gray);
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .bike-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .bike-tag {
-    position: absolute;
-    top: 16px; left: 16px;
-    background: var(--black);
-    color: var(--yellow);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 100px;
-  }
-  .bike-info {
-    padding: 24px;
-  }
-  .bike-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .bike-tagline {
-    color: var(--mid);
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-  .bike-specs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .spec-item {
-    background: var(--gray);
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .spec-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--mid);
-    margin-bottom: 2px;
-  }
-  .spec-val {
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
-  .bike-colors {
-    margin-bottom: 20px;
-  }
-  .colors-label {
-    font-size: 0.8rem;
-    color: var(--mid);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .color-dots {
-    display: flex;
-    gap: 8px;
-  }
-  .color-dot {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    border: 2px solid #E8E8E8;
-    cursor: pointer;
-    transition: transform 0.15s;
-  }
+  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+  .stat-label { font-size: 0.75rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .cta-btn { display: inline-block; background: var(--yellow); color: var(--black); font-weight: 700; font-size: 1rem; padding: 16px 40px; border-radius: 4px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; border: none; cursor: pointer; letter-spacing: 0.5px; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,224,0,0.4); }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 8px; }
+  .section-sub { text-align: center; color: var(--mid); margin-bottom: 48px; font-size: 1rem; }
+  .bikes-section { padding: 80px 24px; background: var(--white); }
+  .bikes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto; }
+  .bike-card { border: 2px solid #E8E8E8; border-radius: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; background: var(--white); }
+  .bike-card:hover { border-color: var(--yellow); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .bike-img-wrap { background: var(--gray); height: 280px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .bike-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .carousel { position: relative; width: 100%; height: 100%; }
+  .carousel-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; }
+  .carousel-img.active { opacity: 1; }
+  .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: var(--white); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; z-index: 5; display: flex; align-items: center; justify-content: center; }
+  .carousel-btn:hover { background: rgba(0,0,0,0.8); }
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+  .bike-tag { position: absolute; top: 16px; left: 16px; background: var(--black); color: var(--yellow); font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+  .bike-info { padding: 24px; }
+  .bike-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
+  .bike-tagline { color: var(--mid); font-size: 0.9rem; margin-bottom: 20px; }
+  .bike-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .spec-item { background: var(--gray); border-radius: 8px; padding: 10px 14px; }
+  .spec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-bottom: 2px; }
+  .spec-val { font-weight: 700; font-size: 0.95rem; }
+  .bike-colors { margin-bottom: 20px; }
+  .colors-label { font-size: 0.8rem; color: var(--mid); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .color-dots { display: flex; gap: 8px; }
+  .color-dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #E8E8E8; cursor: pointer; transition: transform 0.15s; }
   .color-dot:hover { transform: scale(1.2); }
-  .bike-price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .bike-price {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 900;
-  }
-  .bike-shipping {
-    font-size: 0.8rem;
-    color: var(--green);
-    font-weight: 600;
-  }
-  .buy-btn {
-    width: 100%;
-    background: var(--black);
-    color: var(--yellow);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.15s, transform 0.15s;
-  }
-  .buy-btn:hover {
-    background: var(--yellow);
-    color: var(--black);
-    transform: translateY(-1px);
-  }
-
-  /* WHY US */
-  .why-section {
-    background: var(--black);
-    color: var(--white);
-    padding: 80px 24px;
-  }
+  .bike-price-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .bike-price { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 900; }
+  .bike-shipping { font-size: 0.8rem; color: var(--green); font-weight: 600; }
+  .buy-btn { width: 100%; background: var(--black); color: var(--yellow); font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 16px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.15s, transform 0.15s; }
+  .buy-btn:hover { background: var(--yellow); color: var(--black); transform: translateY(-1px); }
+  .why-section { background: var(--black); color: var(--white); padding: 80px 24px; }
   .why-section .section-title { color: var(--white); }
   .why-section .section-title em { color: var(--yellow); font-style: normal; }
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
   .why-item { text-align: center; }
-  .why-icon {
-    font-size: 2.5rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-  .why-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--yellow);
-    margin-bottom: 8px;
-  }
-  .why-desc {
-    font-size: 0.9rem;
-    opacity: 0.65;
-    line-height: 1.6;
-  }
-
-  /* SHIPPING */
-  .shipping-bar {
-    background: var(--yellow);
-    padding: 20px 24px;
-    text-align: center;
-  }
-  .shipping-bar p {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--black);
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .modal-overlay.active { display: flex; }
-  .modal {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 40px;
-    width: 100%;
-    max-width: 480px;
-    position: relative;
-  }
-  .modal-close {
-    position: absolute;
-    top: 16px; right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: var(--black);
-    line-height: 1;
-  }
-  .modal h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .modal-bike-name {
-    color: var(--mid);
-    font-size: 0.9rem;
-    margin-bottom: 24px;
-  }
-  .form-group {
-    margin-bottom: 16px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-    color: var(--mid);
-  }
-  .form-group input, .form-group select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 2px solid #E8E8E8;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .form-group input:focus, .form-group select:focus {
-    border-color: var(--black);
-  }
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  #card-element {
-    padding: 12px 14px;
-    border: 2px solid #E8E8E8;
-    border-radius: 6px;
-    margin-bottom: 8px;
-  }
-  #card-errors {
-    color: #e74c3c;
-    font-size: 0.85rem;
-    margin-bottom: 16px;
-    min-height: 20px;
-  }
-  .order-summary {
-    background: var(--gray);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 20px;
-  }
-  .order-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-  }
-  .order-row.total {
-    font-weight: 700;
-    font-size: 1.05rem;
-    border-top: 1px solid #E8E8E8;
-    padding-top: 10px;
-    margin-top: 6px;
-  }
-  .pay-btn {
-    width: 100%;
-    background: var(--black);
-    color: var(--yellow);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 18px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .pay-btn:hover { background: #222; }
-  .pay-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .secure-note {
-    text-align: center;
-    font-size: 0.78rem;
-    color: var(--mid);
-    margin-top: 12px;
-  }
-
-  /* SUCCESS */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-  }
-  .success-screen.active { display: block; }
-  .success-icon { font-size: 4rem; margin-bottom: 16px; }
-  .success-screen h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .success-screen p { color: var(--mid); line-height: 1.6; }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 0.85rem;
-  }
+  .why-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+  .why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; color: var(--yellow); margin-bottom: 8px; }
+  .why-desc { font-size: 0.9rem; opacity: 0.65; line-height: 1.6; }
+  .shipping-bar { background: var(--yellow); padding: 20px 24px; text-align: center; }
+  .shipping-bar p { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--black); }
+  footer { background: var(--black); color: rgba(255,255,255,0.5); text-align: center; padding: 32px 24px; font-size: 0.85rem; }
   footer strong { color: var(--yellow); }
-
-  @media (max-width: 600px) {
-    .hero-stats { gap: 24px; }
-    .form-row { grid-template-columns: 1fr; }
-    .modal { padding: 28px 20px; }
-  }
+  @media (max-width: 600px) { .hero-stats { gap: 24px; } }
+  .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 8; }
+  .carousel-dot-mini { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.9); background: rgba(255,255,255,0.65); cursor: pointer; }
+  .carousel-dot-mini.active { background: var(--yellow); border-color: var(--yellow); }
+  .thumb-strip { display: flex; gap: 8px; padding: 10px; overflow-x: auto; background: #fff; border-top: 1px solid #eee; }
+  .thumb-strip img { width: 68px; height: 52px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; cursor: pointer; flex: 0 0 auto; }
+  .thumb-strip img.active { border-color: var(--yellow); box-shadow: 0 0 0 2px rgba(255,224,0,0.25); }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <div class="logo">Best Price <span>Ebikes</span></div>
-  <div>
-    <a href="#bikes">Shop</a>
-    <a href="#why">Why Us</a>
-  </div>
+<div class="logo">Best Price <span>Ebikes</span></div>
+<div>
+<a href="#bikes">Shop</a>
+<a href="#why">Why Us</a>
+</div>
 </nav>
-
-<!-- SHIPPING BAR -->
 <div class="shipping-bar">
-  <p>⚡ $50 Flat Rate Shipping on All Orders — Delivered in 7–14 Days Nationwide</p>
+<p>⚡ $50 Flat Rate Shipping on All Orders — Delivered in 7–14 Days Nationwide</p>
 </div>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Electric Bikes • Best Prices Guaranteed</div>
-  <h1>Ride <em>Electric.</em><br>Pay Less.</h1>
-  <p>Premium electric bikes shipped straight to your door. No dealership markup. Just the best price on the best rides.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">50+</div>
-      <div class="stat-label">MPH Top Speed</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">60V</div>
-      <div class="stat-label">Power System</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">7–14</div>
-      <div class="stat-label">Day Delivery</div>
-    </div>
-  </div>
-  <a href="#bikes" class="cta-btn">Shop Now</a>
-</section>
-
-<!-- BIKES -->
-<section class="bikes-section" id="bikes">
-  <h2 class="section-title">Choose Your Ride</h2>
-  <p class="section-sub">Two beasts. One price. Free shipping.</p>
-  <div class="bikes-grid">
-
-    <!-- BIKE 1: DIRT BIKE -->
-    <div class="bike-card">
-      <div class="bike-img-wrap">
-        <img src="https://i.imgur.com/placeholder1.jpg" alt="Electric Dirt Bike" onerror="this.parentElement.innerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px\'><span style=\'font-size:4rem\'>🏍️</span><span style=\'font-weight:700;font-size:1.1rem\'>Electric Dirt Bike</span></div>'"/>
-        <div class="bike-tag">Off-Road</div>
-      </div>
-      <div class="bike-info">
-        <div class="bike-name">Electric Dirt Bike</div>
-        <div class="bike-tagline">60V Hybrid Off-Road Monster — Built for the Trail</div>
-        <div class="bike-specs">
-          <div class="spec-item">
-            <div class="spec-label">Top Speed</div>
-            <div class="spec-val">50+ MPH</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Voltage</div>
-            <div class="spec-val">60V</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Battery</div>
-            <div class="spec-val">23.4Ah</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Type</div>
-            <div class="spec-val">Off-Road</div>
-          </div>
-        </div>
-        <div class="bike-colors">
-          <div class="colors-label">Available Colors</div>
-          <div class="color-dots">
-            <div class="color-dot" style="background:#111" title="Black"></div>
-            <div class="color-dot" style="background:#F5F5F5" title="White"></div>
-          </div>
-        </div>
-        <div class="bike-price-row">
-          <div class="bike-price">$1,050</div>
-          <div class="bike-shipping">+ $50 Shipping</div>
-        </div>
-        <button class="buy-btn" onclick="openModal('Electric Dirt Bike', 1050)">Order Now — $1,050</button>
-      </div>
-    </div>
-
-    <!-- BIKE 2: OLD SCHOOL -->
-    <div class="bike-card">
-      <div class="bike-img-wrap">
-        <img src="https://i.imgur.com/placeholder2.jpg" alt="Old School Electric Motorcycle" onerror="this.parentElement.innerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px\'><span style=\'font-size:4rem\'>🛵</span><span style=\'font-weight:700;font-size:1.1rem\'>Old School Electric</span></div>'"/>
-        <div class="bike-tag">Street Style</div>
-      </div>
-      <div class="bike-info">
-        <div class="bike-name">Old School Electric</div>
-        <div class="bike-tagline">2000W Chopper-Style Street Cruiser — Pure Classic Vibes</div>
-        <div class="bike-specs">
-          <div class="spec-item">
-            <div class="spec-label">Top Speed</div>
-            <div class="spec-val">50+ MPH</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Voltage</div>
-            <div class="spec-val">60V</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Motor</div>
-            <div class="spec-val">2000W</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Display</div>
-            <div class="spec-val">LCD Dual</div>
-          </div>
-        </div>
-        <div class="bike-colors">
-          <div class="colors-label">Available Colors</div>
-          <div class="color-dots">
-            <div class="color-dot" style="background:#CC0000" title="Red"></div>
-            <div class="color-dot" style="background:#FFD700" title="Yellow"></div>
-            <div class="color-dot" style="background:#111" title="Black"></div>
-            <div class="color-dot" style="background:#1565C0" title="Blue"></div>
-            <div class="color-dot" style="background:#F5F5F5" title="White"></div>
-          </div>
-        </div>
-        <div class="bike-price-row">
-          <div class="bike-price">$1,050</div>
-          <div class="bike-shipping">+ $50 Shipping</div>
-        </div>
-        <button class="buy-btn" onclick="openModal('Old School Electric Motorcycle', 1050)">Order Now — $1,050</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why-section" id="why">
-  <h2 class="section-title">Why Ride With <em>Us</em></h2>
-  <p class="section-sub" style="color:rgba(255,255,255,0.5)">Everything you need. Nothing you don't.</p>
-  <div class="why-grid">
-    <div class="why-item">
-      <span class="why-icon">⚡</span>
-      <div class="why-title">Best Price</div>
-      <div class="why-desc">No dealership markup. Direct pricing means you get more bike for your money.</div>
-    </div>
-    <div class="why-item">
-      <span class="why-icon">🚚</span>
-      <div class="why-title">Fast Shipping</div>
-      <div class="why-desc">Flat $50 shipping on every order. Your bike arrives in 7–14 days, delivered to your front door.</div>
-    </div>
-    <div class="why-item">
-      <span class="why-icon">🔒</span>
-      <div class="why-title">Secure Checkout</div>
-      <div class="why-desc">Payments secured by Stripe. Your card info is never stored on our servers.</div>
-    </div>
-    <div class="why-item">
-      <span class="why-icon">🏆</span>
-      <div class="why-title">Quality Proven</div>
-      <div class="why-desc">4.8 star rated supplier with 867+ verified reviews. Real bikes. Real quality.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p><strong>Best Price Ebikes</strong> &nbsp;|&nbsp; bestpriceebikes.online &nbsp;|&nbsp; © 2026 All Rights Reserved</p>
-  <p style="margin-top:8px">Questions? Email us at support@bestpriceebikes.online</p>
-</footer>
-
-<!-- CHECKOUT MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <div id="checkoutForm">
-      <h2>Complete Order</h2>
-      <p class="modal-bike-name" id="modalBikeName">Electric Dirt Bike</p>
-
-      <div class="order-summary">
-        <div class="order-row"><span id="summaryBike">Electric Dirt Bike</span><span>$1,050.00</span></div>
-        <div class="order-row"><span>Shipping</span><span>$50.00</span></div>
-        <div class="order-row total"><span>Total</span><span>$1,100.00</span></div>
-      </div>
-
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="customerName" placeholder="John Smith"/>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="customerEmail" placeholder="john@email.com"/>
-      </div>
-      <div class="form-group">
-        <label>Phone</label>
-        <input type="tel" id="customerPhone" placeholder="(555) 000-0000"/>
-      </div>
-      <div class="form-group">
-        <label>Shipping Address</label>
-        <input type="text" id="customerAddress" placeholder="123 Main Street"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>City</label>
-          <input type="text" id="customerCity" placeholder="Dallas"/>
-        </div>
-        <div class="form-group">
-          <label>State</label>
-          <input type="text" id="customerState" placeholder="TX"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Color Choice</label>
-        <select id="colorChoice">
-          <option value="">Select a color...</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Card Details</label>
-        <div id="card-element"></div>
-        <div id="card-errors"></div>
-      </div>
-
-      <button class="pay-btn" id="payBtn" onclick="handlePayment()">
-        Pay $1,100.00 Securely
-      </button>
-      <p class="secure-note">🔒 Secured by Stripe. Your payment info is never stored.</p>
-    </div>
-
-    <div class="success-screen" id="successScreen">
-      <div class="success-icon">🎉</div>
-      <h2>Order Placed!</h2>
-      <p>Thank you! Your electric bike is on its way.<br>Expect delivery in <strong>7–14 business days</strong>.<br><br>A confirmation will be sent to your email.</p>
-    </div>
-  </div>
+<div class="hero-badge">Electric Bikes • Best Prices Guaranteed</div>
+<h1>Ride <em>Electric.</em><br/>Pay Less.</h1>
+<p>Premium electric bikes shipped straight to your door. No dealership markup. Just the best price on the best rides.</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">50+</div><div class="stat-label">MPH Top Speed</div></div>
+<div class="stat"><div class="stat-num">60V</div><div class="stat-label">Power System</div></div>
+<div class="stat"><div class="stat-num">7–14</div><div class="stat-label">Day Delivery</div></div>
 </div>
-
+<a class="cta-btn" href="#bikes">Shop Now</a>
+</section>
+<section class="bikes-section" id="bikes">
+<h2 class="section-title">Choose Your Ride</h2>
+<p class="section-sub">Two beasts. One price. Free shipping.</p>
+<div class="bikes-grid">
+<div class="bike-card">
+<div class="bike-img-wrap"><div class="carousel" id="dirtbikeCarousel"><img alt="Electric Dirt Bike 1" class="carousel-img active" src="1000001574-1.jpg"/><img alt="Electric Dirt Bike 2" class="carousel-img" src="dirtbike-2.jpg"/><img alt="Electric Dirt Bike 3" class="carousel-img" src="dirtbike-3.jpg"/><img alt="Electric Dirt Bike 4" class="carousel-img" src="dirtbike-4.jpg"/><img alt="Electric Dirt Bike 5" class="carousel-img" src="dirtbike-5.jpg"/></div>
+<div class="bike-tag">Off-Road</div>
+<button class="carousel-btn prev" onclick="moveCarousel('dirtbikeCarousel', -1)">❮</button><button class="carousel-btn next" onclick="moveCarousel('dirtbikeCarousel', 1)">❯</button><div class="carousel-dots"><button aria-label="Show photo 1" class="carousel-dot-mini active" onclick="setCarousel('dirtbikeCarousel', 0)"></button><button aria-label="Show photo 2" class="carousel-dot-mini" onclick="setCarousel('dirtbikeCarousel', 1)"></button><button aria-label="Show photo 3" class="carousel-dot-mini" onclick="setCarousel('dirtbikeCarousel', 2)"></button><button aria-label="Show photo 4" class="carousel-dot-mini" onclick="setCarousel('dirtbikeCarousel', 3)"></button><button aria-label="Show photo 5" class="carousel-dot-mini" onclick="setCarousel('dirtbikeCarousel', 4)"></button></div></div><div class="thumb-strip"><img alt="Electric Dirt Bike thumbnail 1" class="active" onclick="setCarousel('dirtbikeCarousel', 0)" src="1000001574-1.jpg"/><img alt="Electric Dirt Bike thumbnail 2" class="" onclick="setCarousel('dirtbikeCarousel', 1)" src="dirtbike-2.jpg"/><img alt="Electric Dirt Bike thumbnail 3" class="" onclick="setCarousel('dirtbikeCarousel', 2)" src="dirtbike-3.jpg"/><img alt="Electric Dirt Bike thumbnail 4" class="" onclick="setCarousel('dirtbikeCarousel', 3)" src="dirtbike-4.jpg"/><img alt="Electric Dirt Bike thumbnail 5" class="" onclick="setCarousel('dirtbikeCarousel', 4)" src="dirtbike-5.jpg"/></div>
+<div class="bike-info">
+<div class="bike-name">Electric Dirt Bike</div>
+<div class="bike-tagline">60V Hybrid Off-Road Monster — Built for the Trail</div>
+<div class="bike-specs">
+<div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-val">50+ MPH</div></div>
+<div class="spec-item"><div class="spec-label">Voltage</div><div class="spec-val">60V</div></div>
+<div class="spec-item"><div class="spec-label">Battery</div><div class="spec-val">23.4Ah</div></div>
+<div class="spec-item"><div class="spec-label">Type</div><div class="spec-val">Off-Road</div></div>
+</div>
+<div class="bike-colors">
+<div class="colors-label">Available Colors</div>
+<div class="color-dots">
+<div class="color-dot" style="background:#111" title="Black"></div>
+<div class="color-dot" style="background:#F5F5F5" title="White"></div>
+</div>
+</div>
+<div class="bike-price-row">
+<div class="bike-price">$1,050</div>
+<div class="bike-shipping">+ $50 Shipping</div>
+</div>
+<a href="https://buy.stripe.com/6oU14pgJmflscrsfKAafS05" target="_blank" rel="noopener" class="buy-btn" style="display:block;text-align:center;text-decoration:none;">Order Now — $1,050</a>
+</div>
+</div>
+<div class="bike-card">
+<div class="bike-img-wrap"><div class="carousel" id="scooterCarousel"><img alt="Old School Scooter 1" class="carousel-img active" src="1000001570-2.jpg"/></div>
+<div class="bike-tag">Street Style</div></div>
+<div class="bike-info">
+<div class="bike-name">Old School Electric</div>
+<div class="bike-tagline">2000W Chopper-Style Street Cruiser — Pure Classic Vibes</div>
+<div class="bike-specs">
+<div class="spec-item"><div class="spec-label">Top Speed</div><div class="spec-val">50+ MPH</div></div>
+<div class="spec-item"><div class="spec-label">Voltage</div><div class="spec-val">60V</div></div>
+<div class="spec-item"><div class="spec-label">Motor</div><div class="spec-val">2000W</div></div>
+<div class="spec-item"><div class="spec-label">Display</div><div class="spec-val">LCD Dual</div></div>
+</div>
+<div class="bike-colors">
+<div class="colors-label">Available Colors</div>
+<div class="color-dots">
+<div class="color-dot" style="background:#CC0000" title="Red"></div>
+<div class="color-dot" style="background:#FFD700" title="Yellow"></div>
+<div class="color-dot" style="background:#111" title="Black"></div>
+<div class="color-dot" style="background:#1565C0" title="Blue"></div>
+<div class="color-dot" style="background:#F5F5F5" title="White"></div>
+</div>
+</div>
+<div class="bike-price-row">
+<div class="bike-price">$1,050</div>
+<div class="bike-shipping">+ $50 Shipping</div>
+</div>
+<a href="https://buy.stripe.com/14A14pgJm2yG3UWdCsafS06" target="_blank" rel="noopener" class="buy-btn" style="display:block;text-align:center;text-decoration:none;">Order Now — $1,050</a>
+</div>
+</div>
+</div>
+</section>
+<section class="why-section" id="why">
+<h2 class="section-title">Why Ride With <em>Us</em></h2>
+<p class="section-sub" style="color:rgba(255,255,255,0.5)">Everything you need. Nothing you don't.</p>
+<div class="why-grid">
+<div class="why-item"><span class="why-icon">⚡</span><div class="why-title">Best Price</div><div class="why-desc">No dealership markup. Direct pricing means you get more bike for your money.</div></div>
+<div class="why-item"><span class="why-icon">🚚</span><div class="why-title">Fast Shipping</div><div class="why-desc">Flat $50 shipping on every order. Your bike arrives in 7–14 days, delivered to your front door.</div></div>
+<div class="why-item"><span class="why-icon">🔒</span><div class="why-title">Secure Checkout</div><div class="why-desc">Payments secured by Stripe. Your card info is never stored on our servers.</div></div>
+<div class="why-item"><span class="why-icon">🏆</span><div class="why-title">Quality Proven</div><div class="why-desc">4.8 star rated supplier with 867+ verified reviews. Real bikes. Real quality.</div></div>
+</div>
+</section>
+<footer>
+<p><strong>Best Price Ebikes</strong>  |  bestpriceebikes.online  |  © 2026 All Rights Reserved</p>
+<p style="margin-top:8px">Questions? Email us at support@bestpriceebikes.online</p>
+</footer>
 <script>
-  const stripe = Stripe('pk_live_51ThGwSRwgZtWWHTIimrqXg7LIy5H33AQgrjR337I8869IIP8PV5DLQ5iPKVVPQvHjcEHqaWW5Fq5VMwsSZyH3pcR00jK9Afxqj');
-  const elements = stripe.elements();
-  const cardElement = elements.create('card', {
-    style: {
-      base: {
-        fontSize: '16px',
-        fontFamily: 'Inter, sans-serif',
-        color: '#0A0A0A',
-        '::placeholder': { color: '#aaa' }
-      }
+  function updateCarouselUI(carouselId, activeIndex) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    const imgs = carousel.querySelectorAll('.carousel-img');
+    imgs.forEach((img, i) => img.classList.toggle('active', i === activeIndex));
+    const wrap = carousel.closest('.bike-img-wrap');
+    if (wrap) {
+      const dots = wrap.querySelectorAll('.carousel-dot-mini');
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
     }
-  });
-  cardElement.mount('#card-element');
-  cardElement.on('change', (e) => {
-    document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
-  });
-
-  const bikeColors = {
-    'Electric Dirt Bike': ['Black', 'White'],
-    'Old School Electric Motorcycle': ['Red', 'Yellow', 'Black', 'Blue', 'White']
-  };
-
-  let currentBike = '';
-
-  function openModal(bikeName, price) {
-    currentBike = bikeName;
-    document.getElementById('modalBikeName').textContent = bikeName;
-    document.getElementById('summaryBike').textContent = bikeName;
-    document.getElementById('checkoutForm').style.display = 'block';
-    document.getElementById('successScreen').classList.remove('active');
-
-    const colorSelect = document.getElementById('colorChoice');
-    colorSelect.innerHTML = '<option value="">Select a color...</option>';
-    (bikeColors[bikeName] || []).forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c; opt.textContent = c;
-      colorSelect.appendChild(opt);
+    const card = carousel.closest('.bike-card');
+    if (card) {
+      const thumbs = card.querySelectorAll('.thumb-strip img');
+      thumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === activeIndex));
+    }
+  }
+  function setCarousel(carouselId, index) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    const imgs = carousel.querySelectorAll('.carousel-img');
+    const safeIndex = (index + imgs.length) % imgs.length;
+    updateCarouselUI(carouselId, safeIndex);
+  }
+  function moveCarousel(carouselId, direction) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    const imgs = carousel.querySelectorAll('.carousel-img');
+    let activeIndex = 0;
+    imgs.forEach((img, i) => { if (img.classList.contains('active')) activeIndex = i; });
+    setCarousel(carouselId, activeIndex + direction);
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      let startX = 0, endX = 0;
+      carousel.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        endX = e.changedTouches[0].screenX;
+        const diff = endX - startX;
+        if (Math.abs(diff) > 45) { moveCarousel(carousel.id, diff < 0 ? 1 : -1); }
+      }, { passive: true });
     });
-
-    document.getElementById('modalOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('modalOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
   });
-
-  async function handlePayment() {
-    const name = document.getElementById('customerName').value.trim();
-    const email = document.getElementById('customerEmail').value.trim();
-    const address = document.getElementById('customerAddress').value.trim();
-    const city = document.getElementById('customerCity').value.trim();
-    const state = document.getElementById('customerState').value.trim();
-    const color = document.getElementById('colorChoice').value;
-
-    if (!name || !email || !address || !city || !state || !color) {
-      document.getElementById('card-errors').textContent = 'Please fill in all fields.';
-      return;
-    }
-
-    const btn = document.getElementById('payBtn');
-    btn.disabled = true;
-    btn.textContent = 'Processing...';
-
-    try {
-      const { paymentMethod, error } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-        billing_details: {
-          name,
-          email,
-          address: { line1: address, city, state }
-        }
-      });
-
-      if (error) {
-        document.getElementById('card-errors').textContent = error.message;
-        btn.disabled = false;
-        btn.textContent = 'Pay $1,100.00 Securely';
-        return;
-      }
-
-      // Show success (in production you'd send paymentMethod.id to your server)
-      document.getElementById('checkoutForm').style.display = 'none';
-      document.getElementById('successScreen').classList.add('active');
-
-    } catch (err) {
-      document.getElementById('card-errors').textContent = 'Something went wrong. Please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Pay $1,100.00 Securely';
-    }
-  }
 </script>
 </body>
 </html>
